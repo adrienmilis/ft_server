@@ -1,0 +1,28 @@
+	### Dockerfile
+
+FROM debian:buster
+
+	### Install Nginx on docker
+
+1) docker run -tid --name web -p 8000:80 nginx:latest
+
+-ti : terminal driver added - makes the container start look like a terminal connection session
+-d : run container in background and print container ID
+
+### LEMP Stack (Linux, Nginx, MySQL, PHP)
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04
+
+	### install maria DB
+
+apt-get -y install mariadb-server mariadb-client
+
+https://computingforgeeks.com/how-to-install-mariadb-on-debian/
+
+What ? Database management system
+
+apt install mariadb-server mariadb-client
+
+	### Install PhP My admin ###
+
+https://phoenixnap.com/kb/how-to-install-phpmyadmin-on-debian-10
