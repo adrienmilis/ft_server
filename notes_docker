@@ -1,0 +1,27 @@
+---------------------------
+### Install Nginx on docker
+---------------------------
+1) docker run -tid --name web -p 8000:80 nginx:latest
+
+-ti : terminal driver added - makes the container start look like a terminal connection session
+-d : run container in background and print container ID
+
+2) docker start <id> if the container closed
+
+-------------------
+### Run docker bash
+-------------------
+docker exec -it <name> bash
+-i : interactive 
+-t : allocate a pseudo-TTY (has a function of a physical terminal without actually being one --> remote access)
+
+--------------
+### Dockerfile
+--------------
+FROM debian:buster
+
+----------------
+### Docker build
+----------------
+With the build command, builds the container from the dockerfile. 
+The container can then be ran.

@@ -1,28 +1,49 @@
-	### Dockerfile
-
-FROM debian:buster
-
-	### Install Nginx on docker
-
-1) docker run -tid --name web -p 8000:80 nginx:latest
-
--ti : terminal driver added - makes the container start look like a terminal connection session
--d : run container in background and print container ID
-
-### LEMP Stack (Linux, Nginx, MySQL, PHP)
-
+-----------------------------------------
+LEMP Stack (Linux, Nginx, MySQL, PHP)
+-----------------------------------------
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04
+good set of videos : https://www.youtube.com/watch?v=ZyQRqa8I6bU
 
-	### install maria DB
+---------------
+NGINX Conf file
+---------------
+restart nginx : 
 
-apt-get -y install mariadb-server mariadb-client
+https://www.linode.com/docs/guides/how-to-configure-nginx/
+wordpress : https://www.nginx.com/resources/wiki/start/topics/recipes/wordpress/
+php : https://www.thegeekstuff.com/2013/12/nginx-php-fpm/ OR https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mariadb-php-lemp-stack-on-debian-10
+
+-------
+MariaDB
+-------
+cmd: apt-get -y install mariadb-server mariadb-client
 
 https://computingforgeeks.com/how-to-install-mariadb-on-debian/
-
 What ? Database management system
+You install a server on your machine and the applications are clients that talk to this server (retrieve or store information in the database)
+Create a MariaDB user to use with phpmyadmin
 
-apt install mariadb-server mariadb-client
-
-	### Install PhP My admin ###
+----------
+phpMyAdmin
+----------
 
 https://phoenixnap.com/kb/how-to-install-phpmyadmin-on-debian-10
+
+- "phpMyAdmin est une interface web en PHP pour administrer à distance les SGBD MySQL et MariaDB."
+- "phpMyAdmin was created so that users can interact with MySQL through an intuitive web interface, running alongside a PHP development environment."
+- "before installing PHP My admin, you need to configure the MariaDB database"
+
+need a configuration file for phpMyAdmin !! Add afterwards
+(/var/www/html/phpmyadmin/config.inc.php)
+
+wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
+mkdir -p /var/www/html/phpmyadmin # -p creates all the directories even if they don't exist
+tar -xf phpMyAdmin-latest-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin
+rm -rf phpMyAdmin-latest-all-languages.tar.gz
+### ADD CONFIG FILE, CHMOD, CHOWN (for nginx to be able to access) (see docker file)
+
+---
+SSL
+---
+what is SSL ? (good resource) : https://www.cloudflare.com/learning/ssl/what-is-ssl/
+install SSL certificate (pb too much) : https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
