@@ -1,17 +1,18 @@
 ---------------------------
 ### Install Nginx on docker
 ---------------------------
-1) docker run -tid --name web -p 8000:80 nginx:latest
+# docker run -tid --name web -p 80:8000 nginx:latest (moyen de faire nginx full ????????)
 
+this binds port 8000 of the container to TCP port 80 on the host machine (allowing browser access without specifying the port after localhost) (the port on the host machine needs to be 80 to be able to start correctly)
 -ti : terminal driver added - makes the container start look like a terminal connection session
 -d : run container in background and print container ID
 
-2) docker start <id> if the container closed
+# docker start <id> if the container closed
 
 -------------------
 ### Run docker bash
 -------------------
-docker exec -it <name> bash
+# docker exec -it <name> bash
 -i : interactive 
 -t : allocate a pseudo-TTY (has a function of a physical terminal without actually being one --> remote access)
 
@@ -23,5 +24,7 @@ FROM debian:buster
 ----------------
 ### Docker build
 ----------------
+# docker build -t <image name> <dockerfile dir>
+-t : tags our image. Think of this simply as a human-readable name for the final image
 With the build command, builds the container from the dockerfile. 
 The container can then be ran.

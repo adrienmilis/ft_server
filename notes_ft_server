@@ -7,7 +7,14 @@ good set of videos : https://www.youtube.com/watch?v=ZyQRqa8I6bU
 ---------------
 NGINX Conf file
 ---------------
-restart nginx : 
+# service nginx status (to know if it's running)
+# apt install net-tools (install netstat after running update)
+# netstat -tupnl (to know what ports are listening)
+# service nginx restart (restart nginx)
+
+main nginx configuration directory : conf.d --> individual site configurations can be stored
+to work with php-fpm : set the same as in listen /etc/php/7.3/fpm/pool.d/www.conf (/run/php/php7.3-fpm.sock)
+!!! service php7.3-fpm start to start the service and generate the file !!!
 
 https://www.linode.com/docs/guides/how-to-configure-nginx/
 wordpress : https://www.nginx.com/resources/wiki/start/topics/recipes/wordpress/
@@ -16,12 +23,18 @@ php : https://www.thegeekstuff.com/2013/12/nginx-php-fpm/ OR https://www.digital
 -------
 MariaDB
 -------
-cmd: apt-get -y install mariadb-server mariadb-client
+# apt-get -y install mariadb-server mariadb-client
 
 https://computingforgeeks.com/how-to-install-mariadb-on-debian/
 What ? Database management system
 You install a server on your machine and the applications are clients that talk to this server (retrieve or store information in the database)
 Create a MariaDB user to use with phpmyadmin
+
+---
+PHP
+---
+
+/etc/php/7.3/fpm/php.ini --> set pathinfo to 0 (necessaire ? pq pas)
 
 ----------
 phpMyAdmin
@@ -36,10 +49,12 @@ https://phoenixnap.com/kb/how-to-install-phpmyadmin-on-debian-10
 need a configuration file for phpMyAdmin !! Add afterwards
 (/var/www/html/phpmyadmin/config.inc.php)
 
-wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
-mkdir -p /var/www/html/phpmyadmin # -p creates all the directories even if they don't exist
-tar -xf phpMyAdmin-latest-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin
-rm -rf phpMyAdmin-latest-all-languages.tar.gz
+# apt-get install -y wget
+# rm -rf /var/libs/apt/lists/*
+# wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
+# mkdir -p /var/www/html/phpmyadmin # -p creates all the directories even if they don't exist
+# tar -xf phpMyAdmin-latest-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin
+# rm -rf phpMyAdmin-latest-all-languages.tar.gz
 ### ADD CONFIG FILE, CHMOD, CHOWN (for nginx to be able to access) (see docker file)
 
 ---
