@@ -23,8 +23,9 @@ RUN apt-get -y install php php-fpm php-mysql (need extensions for wordpress like
 
 ### MariaDB ###
 
-RUN apt-get -y install mariadb-server mariadb-client
+RUN apt-get -y install mariadb-server mariadb-client 
         && mysql_install_db ????? pas sur que ce soit necessaire
+# !! ne pas oublier de lancer le service mariaDB
 
 ### Adding files ###
 
