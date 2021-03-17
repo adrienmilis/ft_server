@@ -4,13 +4,14 @@ LEMP Stack (Linux, Nginx, MySQL, PHP)
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04
 good set of videos : https://www.youtube.com/watch?v=ZyQRqa8I6bU
 
----------------
-NGINX Conf file
----------------
+-----
+NGINX
+-----
 # service nginx status (to know if it's running)
 # apt install net-tools (install netstat after running update)
 # netstat -tupnl (to know what ports are listening)
 # service nginx restart (restart nginx)
+# service --status-all (see running services)
 
 main nginx configuration directory : conf.d --> individual site configurations can be stored
 to work with php-fpm : set the same as in listen /etc/php/7.3/fpm/pool.d/www.conf (/run/php/php7.3-fpm.sock)
@@ -58,6 +59,12 @@ need a configuration file for phpMyAdmin !! Add afterwards
 -f : file
 # rm -rf phpMyAdmin-latest-all-languages.tar.gz
 ### ADD CONFIG FILE, CHMOD, CHOWN (for nginx to be able to access) (see docker file)
+
+---------
+Wordpress
+---------
+
+
 
 ---
 SSL

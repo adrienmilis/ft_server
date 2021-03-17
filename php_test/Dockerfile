@@ -20,12 +20,15 @@ RUN rm -rf phpMyAdmin-latest-all-languages.tar.gz
 
 # PHP test file
 ADD srcs/phpinfo.php /var/www/html/
+
 # ADD nginx config file
 RUN rm /etc/nginx/sites-available/default
 ADD srcs/default /etc/nginx/sites-available
 # RUN chown -R www-data:www-data /var/www/html (fonctionne sans a priori)
+
 # Add phpmyadmin config file
 ADD srcs/config.inc.php /var/www/html/phpmyadmin/
+
 # change permissions & ownership for phpmyadmin files
 RUN chmod 660 /var/www/html/phpmyadmin/config.inc.php
 RUN chown -R www-data:www-data /var/www/html/phpmyadmin
