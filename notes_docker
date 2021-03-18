@@ -16,6 +16,8 @@ this binds port 8000 of the container to TCP port 80 on the host machine (allowi
 -i : interactive 
 -t : allocate a pseudo-TTY (has a function of a physical terminal without actually being one --> remote access)
 
+# docker cp <container_name>:/path_container /path_host_machine (pour copier un fichier du container à la host machine)
+
 --------------
 ### Dockerfile
 --------------

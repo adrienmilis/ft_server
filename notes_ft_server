@@ -31,6 +31,8 @@ What ? Database management system
 You install a server on your machine and the applications are clients that talk to this server (retrieve or store information in the database)
 Create a MariaDB user to use with phpmyadmin
 
+# /etc/init.d/mysql start (starting mariaDB database)
+
 ---
 PHP
 ---
@@ -64,10 +66,62 @@ need a configuration file for phpMyAdmin !! Add afterwards
 Wordpress
 ---------
 
+https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-nginx-mariadb-and-php-on-debian-10
 
+# wget http://wordpress.org/latest.tar.gz
+# mkdir /var/www/html/wordpress
+# tar -xf latest.tar.gz -C /var/www/html/
+# rm -rf latest.tar.gz
+# chown -R www-data:www-data /var/www/html/wordpress
+# apt-get install -y php-gd php-curl php-ssh2
+# cp wp-config-sample.php wp-config.php
+
+what he does for the database : 
+	- CREATE DATABASE wordpress;
+	- CREATE USER wpuser@localhost IDENTIFIED BY 'wpuserpass';
+	- GRANT ALL PRIVILEGES ON wordpress.* TO wpuser@localhost; (.* is all tables in this database)
+	- FLUSH PRIVILEGES; (enabling the changes to take effect without restarting mysql service)
+
+--> possible avec un fichier .sql
+# mysql < mysql_createdb.sql
+then added config file
 
 ---
 SSL
 ---
 what is SSL ? (good resource) : https://www.cloudflare.com/learning/ssl/what-is-ssl/
 install SSL certificate (pb too much) : https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
+self-signed SSL : https://codingwithmanny.medium.com/configure-self-signed-ssl-for-nginx-docker-from-a-scratch-7c2bcd5478c6
+avec un vrai domaine : https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
+
+openssl deja installe de base on dirait
+
+# openssl req -x509 -nodes -days 365 -subj "/C=BE/ST=BXL/O=19, Inc./CN=localhost" -addext "subjectAltName=DNS:localhost" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt;
+
+req -x509 : self-signed certificate
+-nodes : no passphrase so nginx can read it
+-days 365 : 365 days
+-subj : specify info without filling prompts
+-addext : to make the certificate valid for browser and local machine
+- newkey rsa:2048 : new certificate & new key with RSA key of 2048 bits
+-keyout : location of the output .key file
+-out : location of the output .crt file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
